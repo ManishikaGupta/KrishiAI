@@ -1,57 +1,80 @@
 import React from "react";
-import { View, Text, StyleSheet, Image, Button } from "react-native";
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  SafeAreaView,
+  Dimensions,
+  StyleSheet,
+} from "react-native";
+import { Ionicons } from "@expo/vector-icons";
 
-export default function HomeScreen() {
-  return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Welcome to Krishi AI Community</Text>
-
-      <Image
-        style={styles.image}
-        source={{
-          uri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQjHnl9T6jHnePYIE97AI8cFCwjHUF7b5-0mg&s",
-        }}
-      />
-
-      <Text style={styles.subtitle}>
-        Empowering farmers with technology and collaboration.
-      </Text>
-
-      <Button
-        title="LET'S GO"
-        onPress={() => alert("Navigating to next page")}
-      />
-    </View>
-  );
+interface BottomNavigationProps {
+  // Add any props you might want to pass to your component
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#F4E1C4", // Warm beige
-    alignItems: "center",
-    justifyContent: "center",
-    padding: 20,
-  },
-  title: {
-    fontSize: 26,
-    fontWeight: "bold",
-    color: "#6D4C41", // Earthy brown
-    textAlign: "center",
-    marginBottom: 20,
-  },
-  image: {
-    width: 300,
-    height: 200,
-    resizeMode: "cover",
-    borderRadius: 15,
-    borderWidth: 2,
-    borderColor: "#A1887F", // Soft brown
-  },
-  subtitle: {
-    fontSize: 16,
-    color: "#4E342E", // Darker brown
-    textAlign: "center",
-    marginTop: 20,
-  },
-});
+const BottomNavigation: React.FC<BottomNavigationProps> = () => {
+  const screenWidth = Dimensions.get("window").width;
+
+  return (
+    <SafeAreaView
+      style={{
+        position: "absolute",
+        bottom: 0,
+        left: 0,
+        right: 0,
+        backgroundColor: "green",
+      }}
+    >
+      <View
+        style={{
+          flexDirection: "row",
+          backgroundColor: "#6BAED6",
+          paddingVertical: 10,
+          borderTopWidth: 1,
+          borderTopColor: "#e0e0e0",
+        }}
+      >
+        <TouchableOpacity
+          style={{
+            alignItems: "center",
+            width: screenWidth / 4,
+          }}
+        >
+          <Ionicons name="leaf" size={24} color="90A955" />
+          <Text>Crops</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={{
+            alignItems: "center",
+            width: screenWidth / 4,
+          }}
+        >
+          <Ionicons name="people" size={24} color="90A955" />
+          <Text>Community</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={{
+            alignItems: "center",
+            width: screenWidth / 4,
+          }}
+        >
+          <Ionicons name="storefront" size={24} color="90A955" />
+          <Text>Dukaan</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={{
+            alignItems: "center",
+            width: screenWidth / 4,
+          }}
+        >
+          <Ionicons name="person" size={24} color="90A955" />
+          <Text>You</Text>
+        </TouchableOpacity>
+      </View>
+    </SafeAreaView>
+  );
+};
+
+export default BottomNavigation;
+
